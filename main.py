@@ -39,7 +39,7 @@ class App(tk.Tk):
 		self.create_body_frame()
 		self.create_footer_frame()
 
-		threading()
+		#threading()
 
 	def create_header_frame(self):
 		self.header = ttk.Frame(self)
@@ -116,6 +116,8 @@ def sensorLoop():
 		client.send_message("/goal", 1)
 	else :
 		client.send_message("/goal", 0)
+
+	app.after(50, threading())
 
 def threading():
 	t1=Thread(target=sensorLoop)
