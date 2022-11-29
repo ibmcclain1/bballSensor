@@ -117,7 +117,7 @@ def sensorLoop():
 	else :
 		client.send_message("/goal", 0)
 
-	app.after(50, sensorLoop)
+	app.after(25, sensorLoop)
 
 #def threading():
 #	t1=Thread(target=sensorLoop)
@@ -126,5 +126,5 @@ def sensorLoop():
 
 
 app = App()
-app.after(50, sensorLoop)
+app.after(25, sensorLoop)
 app.mainloop()
