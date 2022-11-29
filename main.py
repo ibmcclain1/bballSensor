@@ -105,7 +105,7 @@ def sensorLoop():
 	print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
 	              format(distance,strength,temperature)) # print sample data
 	
-	ser.close() # close serial port
+	#ser.close() # close serial port
 	status = 'Sensor Running'
 
 	#####    OSC     #######
