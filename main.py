@@ -46,7 +46,7 @@ while True:
 
 	#####    OSC     #######
 	#client.connect( (ip,port) )
-	if(distance > 50 and distance < 200):
+	if(distance > 0.1 and distance < 0.4):
 		client.send_message("/net", 1)
 	else :
 		client.send_message("/net", 0)
