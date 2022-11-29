@@ -31,7 +31,6 @@ def read_tfluna_data():
                 temperature = (temperature/8.0) - 256.0 # temp scaling and offset
                 return distance/100.0,strength,temperature
 
-#client.connect( (ip,port) )
 #### Main Loop ####
 
 while True:
