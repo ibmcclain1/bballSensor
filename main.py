@@ -8,15 +8,10 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 
+import time
+
 #import logging
-#import threading
-
-#Troubleshooting GUI
-#root = Tk()
-#frm = ttk.Frame(root, padding=10)
-#frm.grid()
-#ttk.Label(frm, text= 'Last Message').grid(column=0,row=0)
-
+from threading import *
 
 
 parser = argparse.ArgumentParser()
@@ -29,6 +24,7 @@ args = parser.parse_args()
 client = udp_client.SimpleUDPClient(args.ip, args.port)
 
 ser = serial.Serial("/dev/serial0", 115200,timeout=0) # mini UART serial device
+
 status = "Uninitialized "
 message = 'na'
 
@@ -119,7 +115,12 @@ def sensorLoop():
 	else :
 		client.send_message("/goal", 0)
 
+def threading():
+	t1=Thread(target=sensorLoop)
+	t1.start()
+
+
 
 app = App()
-app.after(50, sensorLoop())
+app.after(50, threading())
 app.mainloop()
