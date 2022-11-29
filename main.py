@@ -1,13 +1,20 @@
 #import RPi.GPIO
-import pyOSC as OSC
+import argparse
+from pythonosc import udp_client
 import serial, time
 import numpy as np
 #import logging
 #import threading
 
-client = OSC.OSCClient()
-ip = '192.168.1.45'
-port = 7003
+parser = argparse.ArgumentParser()
+parser.add_argument("--ip", default="192.168.1.38",
+  help="The ip of the OSC server")
+parser.add_argument("--port", type=int, default=5005,
+  help="The port the OSC server is listening on")
+args = parser.parse_args()
+
+client = udp_client.SimpleUDPClient(args.ip, args.port)
+
 ser = serial.Serial("/dev/serial0", 115200,timeout=0) # mini UART serial device
 
 def read_tfluna_data():
@@ -41,9 +48,9 @@ while True:
 	#####    OSC     #######
 	#client.connect( (ip,port) )
 	if(distance > 50 and distance < 200):
-		client.send(OSCMessage('/net/',1))
+		client.send_message("/net", 1)
 	else :
-		client.send(OSCMessage('/net/',0))
+		client.send_message("/net", 0)
 
 
 	
