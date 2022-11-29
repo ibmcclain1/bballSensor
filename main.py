@@ -12,6 +12,8 @@ import time
 
 #import logging
 from threading import *
+import sys
+import os
 
 
 parser = argparse.ArgumentParser()
@@ -28,6 +30,13 @@ ser = serial.Serial("/dev/serial0", 115200,timeout=0) # mini UART serial device
 status = "Uninitialized "
 message = 'na'
 
+###Rpi display check for startup####
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using :0.0')
+    os.environ.__setitem__('DISPLAY', ':0.0')
+
+
+######### GUI ############
 class App(tk.Tk):
 	def __init__(self):
 		super().__init__()
@@ -95,6 +104,8 @@ def read_tfluna_data():
                 temperature = bytes_serial[6] + bytes_serial[7]*256 # temp in next two bytes
                 temperature = (temperature/8.0) - 256.0 # temp scaling and offset
                 return distance/100.0,strength,temperature
+
+######### END GUI ############
 
 #### Main Loop ####
 
