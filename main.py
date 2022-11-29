@@ -6,7 +6,7 @@ import numpy as np
 #import threading
 
 client = OSC.OSCClient()
-ip = '172.16.1.107'
+ip = '192.168.1.45'
 port = 7003
 ser = serial.Serial("/dev/serial0", 115200,timeout=0) # mini UART serial device
 
