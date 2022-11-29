@@ -39,6 +39,8 @@ class App(tk.Tk):
 		self.create_body_frame()
 		self.create_footer_frame()
 
+		threading()
+
 	def create_header_frame(self):
 		self.header = ttk.Frame(self)
 		#grid setup
@@ -100,7 +102,7 @@ def sensorLoop():
 	####  Activate sensor and measure #####
 	if ser.isOpen() == False:
 	    ser.open() # open serial port if not open
-
+	status = 'Active'
 	distance,strength,temperature = read_tfluna_data() # read values
 	print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
 	              format(distance,strength,temperature)) # print sample data
