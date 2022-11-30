@@ -68,7 +68,7 @@ def read_data():
         else:
           print('Serial Read Issue, are all wires properly connected? Counter is'+ str(counter))
         print ('overrun delay')
-        #time.sleep(.08)
+        time.sleep(.01)
 
 
 if __name__ == "__main__":
