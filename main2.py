@@ -32,7 +32,6 @@ def read_data():
             bytes_serial = ser.read(9)
             ser.reset_input_buffer()
 
-
             if bytes_serial[0] == 0x59 and bytes_serial[1] == 0x59: # this portion is for python3
                 print("Printing python3 portion")            
                 distance = bytes_serial[2] + bytes_serial[3]*256 # multiplied by 256, because the binary data is shifted by 8 to the left (equivalent to "<< 8").                                              # Dist_L, could simply be added resulting in 16-bit data of Dist_Total.
@@ -44,8 +43,6 @@ def read_data():
                 if temperature != 0:
                     print("Temperature:" + str(temperature))
                 ser.reset_input_buffer()
-            else:
-              print('error verifying bytes to hex')
 
             if bytes_serial[0] == "Y" and bytes_serial[1] == "Y":
                 distL = int(bytes_serial[2].encode("hex"), 16)
@@ -63,15 +60,11 @@ def read_data():
                 print("Strength:" + str(strength) + "\n")
                 print("Temperature:" + str(temperature) + "\n")
                 ser.reset_input_buffer()
-            else:
-              prin( 'error verifying bytes')
 
             if(distance > 0.1 and distance < 0.4):
                 client.send_message("/goal", 1)
             else :
                 client.send_message("/goal", 0)
-        else:
-            print('serial counter not >8')
 
 
 if __name__ == "__main__":
