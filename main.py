@@ -79,5 +79,6 @@ def sensorLoop():
 	#root.after(15, sensorLoop)
 
 if __name__ == '__main__':
-    sensorLoop()
+    while True:
+    	sensorLoop()
 
