@@ -20,7 +20,7 @@ args = parser.parse_args()
 client = udp_client.SimpleUDPClient(args.ip, args.port)
 
 # create the sensor and give it a port and (optional) operating mode
-tf = TFmini('/dev/serial0', mode=TFmini.STD_MODE)
+tf = TFmini('/dev/ttyAMA0', mode=TFmini.STD_MODE)
 
 try:
     print('='*25)
