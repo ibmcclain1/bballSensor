@@ -66,7 +66,7 @@ def sensorLoop():
 	
 	print(sensorStatus)
 
-	#ser.close() # close serial port
+	ser.close() # close serial port
 	status = 'Sensor Running'
 
 	#####    OSC     #######
