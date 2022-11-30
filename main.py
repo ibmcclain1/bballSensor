@@ -76,7 +76,7 @@ def sensorLoop():
 	else :
 		client.send_message("/goal", 0)
 
-	root.after(15, sensorLoop)
+	#root.after(15, sensorLoop)
 
 if __name__ == '__main__':
     sensorLoop()
