@@ -61,10 +61,10 @@ def read_data():
                 print("Temperature:" + str(temperature) + "\n")
                 ser.reset_input_buffer()
 
-            #if(distance > 0.1 and distance < 0.4):
-            #    client.send_message("/goal", 1)
-            #else :
-            #    client.send_message("/goal", 0)
+            if(distance > 0.1 and distance < 0.4):
+                client.send_message("/goal", 1)
+            else :
+                client.send_message("/goal", 0)
         else:
           print('Serial Read Issue, are all wires properly connected? Counter is'+ str(counter))
         print ('overrun delay')
