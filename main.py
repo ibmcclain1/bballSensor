@@ -31,65 +31,23 @@ status = "Uninitialized "
 message = 'na'
 
 ###Rpi display check for startup####
-if os.environ.get('DISPLAY','') == '':
-    print('no display found. Using :0.0')
-    os.environ.__setitem__('DISPLAY', ':0.0')
+#if os.environ.get('DISPLAY','') == '':
+ #   print('no display found. Using :0.0')
+  #  os.environ.__setitem__('DISPLAY', ':0.0')
 
 
 ######### GUI ############
-class App(tk.Tk):
-	def __init__(self):
-		super().__init__()
-		self.title('Basketball Sensor')
-		self.geometry('680x430')
-		self.resizable(0, 0)
+class PrintLogger(): # create file like object
+    def __init__(self, textbox): # pass reference to text widget
+        self.textbox = textbox # keep ref
 
-		self.create_header_frame()
-		self.create_body_frame()
-		self.create_footer_frame()
+    def write(self, text):
+        self.textbox.insert(tk.END, text) # write text to textbox
+            # could also scroll to end of textbox here to make sure always visible
 
-		#threading()
-
-	def create_header_frame(self):
-		self.header = ttk.Frame(self)
-		#grid setup
-		self.header.columnconfigure(0, weight=2)
-		self.header.columnconfigure(1, weight=5)
-		#self.header.columnconfigure(2, weight=5)
-
-		#label
-		self.label = ttk.Label(self.header, text='Status', width = 25)
-		self.label.grid(column = 0, row=0)
-
-		#label
-		self.label2 = ttk.Label(self.header, text=status, width = 100)
-		self.label2.grid(column = 1, row=0)
-
-		#Attach
-		self.header.grid(column=0, row=0, padx=10, pady=10)
-
-	def create_body_frame(self):
-		self.body = ttk.Frame(self)
-		#Grid Setup
-		self.body.columnconfigure(0, weight=5)
-		self.body.columnconfigure(1, weight=5)
-
-		#Most recent label
-		self.label = ttk.Label(self.body, text='Most recent message', width = 34)
-		self.label.grid(column = 0, row = 1)
-
-		#Most recent 
-		self.label = ttk.Label(self.body, text= message, width = 100)
-		self.label.grid(column = 1, row = 1)
-
-		#Attach
-		self.body.grid(column=0, row=1, padx=10, pady=10)
-
-	def create_footer_frame(self):
-		self.footer = ttk.Frame(self)
-
-
-		self.footer.grid(column=0, row=2, padx=10, pady=10)
+    def flush(self): # needed for file like object
+        pass
+	
 
 def read_tfluna_data():
     while True:
@@ -115,9 +73,11 @@ def sensorLoop():
 	    ser.open() # open serial port if not open
 	status = 'Active'
 	distance,strength,temperature = read_tfluna_data() # read values
-	print('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
+	sensorStatus = ('Distance: {0:2.2f} m, Strength: {1:2.0f} / 65535 (16-bit), Chip Temperature: {2:2.1f} C'.\
 	              format(distance,strength,temperature)) # print sample data
 	
+	print(sensorStatus)
+
 	#ser.close() # close serial port
 	status = 'Sensor Running'
 
@@ -130,12 +90,16 @@ def sensorLoop():
 
 	app.after(15, sensorLoop)
 
-#def threading():
-#	t1=Thread(target=sensorLoop)
-#	t1.start()
+if __name__ == '__main__':
+    root = tk.Tk()
+    t = tk.Text()
+    t.pack()
+    # create instance of file like object
+    pl = PrintLogger(t)
 
+    # replace sys.stdout with our object
+    sys.stdout = pl
 
+    root.after(15, sensorLoop)
+    root.mainloop()
 
-app = App()
-app.after(15, sensorLoop)
-app.mainloop()
