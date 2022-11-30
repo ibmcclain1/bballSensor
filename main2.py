@@ -15,7 +15,7 @@ import os
 parser = argparse.ArgumentParser()
 parser.add_argument("--ip", default="192.168.1.45",
   help="The ip of the OSC server")
-parser.add_argument("--port", type=int, default=5005,
+parser.add_argument("--port", type=int, default=7001,
   help="The port the OSC server is listening on")
 args = parser.parse_args()
 
