@@ -43,6 +43,8 @@ def read_data():
                 if temperature != 0:
                     print("Temperature:" + str(temperature))
                 ser.reset_input_buffer()
+            else:
+              print('error verifying bytes to hex')
 
             if bytes_serial[0] == "Y" and bytes_serial[1] == "Y":
                 distL = int(bytes_serial[2].encode("hex"), 16)
@@ -60,6 +62,8 @@ def read_data():
                 print("Strength:" + str(strength) + "\n")
                 print("Temperature:" + str(temperature) + "\n")
                 ser.reset_input_buffer()
+            else:
+              prin( 'error verifying bytes')
 
             if(distance > 0.1 and distance < 0.4):
                 client.send_message("/goal", 1)
