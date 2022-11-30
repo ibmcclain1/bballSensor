@@ -31,6 +31,8 @@ def read_data():
         if counter > 8:
             bytes_serial = ser.read(9)
             ser.reset_input_buffer()
+        else:
+          print('serial counter not >8')
 
             if bytes_serial[0] == 0x59 and bytes_serial[1] == 0x59: # this portion is for python3
                 print("Printing python3 portion")            
