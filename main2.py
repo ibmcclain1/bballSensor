@@ -61,7 +61,7 @@ def read_data():
                 print("Temperature:" + str(temperature) + "\n")
                 ser.reset_input_buffer()
 
-            if(distance > 0.1 and distance < 0.4):
+            if(distance > 10 and distance < 40):
                 client.send_message("/goal", 1)
             else :
                 client.send_message("/goal", 0)
