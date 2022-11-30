@@ -66,7 +66,7 @@ def read_data():
             #else :
             #    client.send_message("/goal", 0)
         else:
-          print('Serial Read Issue, are all wires properly connected?')
+          print('Serial Read Issue, are all wires properly connected? Counter is'+ str(counter))
         print ('overrun delay')
         time.sleep(.08)
 
