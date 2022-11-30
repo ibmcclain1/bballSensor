@@ -81,5 +81,5 @@ def sensorLoop():
 if __name__ == '__main__':
     while True:
     	sensorLoop()
-    	time.sleep(0.03)
+    	time.sleep(0.02)
 
