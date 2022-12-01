@@ -8,7 +8,7 @@ import time
 import tfmplus as tfmP   # Import the `tfmplus` module v0.1.0
 from tfmplus import *    # and command and paramter defintions
 
-serialPort = "/dev/serial0"  # Raspberry Pi normal serial port
+serialPort = "/dev/ttyAMA0"  # Raspberry Pi normal serial port
 serialRate = 115200          # TFMini-Plus default baud rate
 
 #OSC Setup
