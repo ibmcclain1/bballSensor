@@ -73,7 +73,7 @@ try:
             print( " | ", end= '')
             print( f"Temp: {tfmP.temp:{2}}°C",  )   # display temperature,
 
-            if(dist > 10 and dist < 40):
+            if(tfmP.dist > 10 and tfmP.dist < 40):
                 client.send_message("/goal", 1)
             else :
                 client.send_message("/goal", 0)
