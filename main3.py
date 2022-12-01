@@ -32,13 +32,13 @@ else:
     sys.exit()   #  quit the program if serial not ready
 
 # - - Perform a system reset - - - - - - - -
-print( "Soft reset: ", end= '')
-if( tfmP.sendCommand( SOFT_RESET, 0)):
-    print( "passed.")
-else:
-    tfmP.printReply()
+#print( "Soft reset: ", end= '')
+#if( tfmP.sendCommand( SOFT_RESET, 0)):
+#    print( "passed.")
+#else:
+#    tfmP.printReply()
 # - - - - - - - - - - - - - - - - - - - - - - - -
-time.sleep(0.5)  # allow 500ms for reset to complete
+#time.sleep(0.5)  # allow 500ms for reset to complete
 
 # - - Get and Display the firmware version - - - - - - -
 print( "Firmware version: ", end= '')
