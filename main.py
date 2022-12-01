@@ -25,7 +25,7 @@ args = parser.parse_args()
 
 client = udp_client.SimpleUDPClient(args.ip, args.port)
 
-ser = serial.Serial("/dev/serial0", 115200,timeout=0) # mini UART serial device
+ser = serial.Serial("/dev/ttyAMA0", 115200,timeout=0) # mini UART serial device
 
 status = "Uninitialized "
 message = 'na'

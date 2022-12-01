@@ -21,7 +21,7 @@ args = parser.parse_args()
 
 client = udp_client.SimpleUDPClient(args.ip, args.port)
 
-ser = serial.Serial("/dev/serial0", 115200)
+ser = serial.Serial("/dev/ttyAMA0", 115200)
 
 
 # we define a new function that will get the data from LiDAR and publish it
